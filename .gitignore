@@ -1,0 +1,15 @@
+# Ignore environment files
+.env
+
+# Ignore IDE-related files and folders
+.idea/
+.vscode/
+
+# Ignore Node.js modules
+node_modules/
+
+# Default ignored files
+/shelf/
+/workspace.xml
+# Editor-based HTTP Client requests
+/httpRequests/
