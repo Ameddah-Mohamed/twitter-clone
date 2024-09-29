@@ -21,15 +21,7 @@ const PORT = process.env.PORT || 5000;
 
 const __dirname = path.resolve();
 
-//_: Serve frontend static files in production
-if (process.env.NODE_ENV === "production") {
-    app.use(express.static(path.join(__dirname, "/frontend/dist")));
-  
-    // Fallback to index.html for all non-API routes
-    app.get("*", (req, res) => {
-      res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
-    });
-  }
+
 
 //_: middlewares
 app.use(express.json({ limit: "10mb" })); // note: For Parsing req.body when it's sent as raw json
@@ -42,6 +34,16 @@ app.use("/users", userRoutes);
 app.use("/posts", postRoutes);
 app.use("/notifications", notificationRoutes);
 
+
+//_: Serve frontend static files in production
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "/frontend/dist")));
+
+  // Fallback to index.html for all non-API routes
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
+  });
+}
 
 
 app.listen(PORT, () => {
