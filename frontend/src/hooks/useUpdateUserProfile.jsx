@@ -8,13 +8,16 @@ const useUpdateUserProfile = () => {
   const { mutateAsync: updateProfile, isPending } = useMutation({
     mutationFn: async (formData) => {
       try {
-        const response = await fetch(`/api/users/update`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        });
+        const response = await fetch(
+          `${import.meta.env.VITE_API_BASE_URL}/users/update`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+          }
+        );
 
         const data = await response.json();
         if (!response.ok) throw new Error(data.error || "something went wrong");

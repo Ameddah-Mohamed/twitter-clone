@@ -14,7 +14,9 @@ const NotificationPage = () => {
     queryKey: ["userNotifications"],
     queryFn: async () => {
       try {
-        const response = await fetch("/api/notifications");
+        const response = await fetch(
+          `${import.meta.env.VITE_API_BASE_URL}/notifications`
+        );
         const data = await response.json();
         if (!response.ok) throw new Error(data.error);
         return data;
@@ -28,9 +30,12 @@ const NotificationPage = () => {
   const { mutate: deleteAllNotifications } = useMutation({
     mutationFn: async () => {
       try {
-        const response = await fetch("/api/notifications", {
-          method: "DELETE",
-        });
+        const response = await fetch(
+          `${import.meta.env.VITE_API_BASE_URL}/notifications`,
+          {
+            method: "DELETE",
+          }
+        );
         const data = await response.json();
         if (!response.ok) throw new Error(data.error);
         return data;

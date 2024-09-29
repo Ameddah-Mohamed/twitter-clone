@@ -11,7 +11,9 @@ const RightPanel = () => {
     queryKey: ["suggestedUsers"],
     queryFn: async () => {
       try {
-        const response = await fetch("/api/users/suggested");
+        const response = await fetch(
+          `${import.meta.env.VITE_API_BASE_URL}/users/suggested`
+        );
         const data = await response.json();
         if (!response.ok) throw new Error(data.error);
         return data;

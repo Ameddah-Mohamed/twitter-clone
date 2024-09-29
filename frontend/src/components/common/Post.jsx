@@ -39,9 +39,12 @@ const Post = ({ post, feedType }) => {
   // Post deletion mutation
   const { mutate: deletePost, isLoading: isDeleting } = useMutation({
     mutationFn: async () => {
-      const res = await fetch(`/api/posts/delete/${post._id}`, {
-        method: "DELETE",
-      });
+      const res = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/posts/delete/${post._id}`,
+        {
+          method: "DELETE",
+        }
+      );
       const data = await res.json();
       if (!res.ok) {
         throw new Error(data.error || "Something went wrong");
@@ -58,9 +61,12 @@ const Post = ({ post, feedType }) => {
   const { mutate: likePost, isPending: isLiking } = useMutation({
     mutationFn: async () => {
       try {
-        const res = await fetch(`/api/posts/like/${post._id}`, {
-          method: "POST",
-        });
+        const res = await fetch(
+          `${import.meta.env.VITE_API_BASE_URL}/posts/like/${post._id}`,
+          {
+            method: "POST",
+          }
+        );
         const data = await res.json();
         if (!res.ok) {
           throw new Error(data.error || "Something went wrong");
@@ -82,13 +88,16 @@ const Post = ({ post, feedType }) => {
   const { mutate: postComment, isPending: isCommenting } = useMutation({
     mutationFn: async () => {
       try {
-        const res = await fetch(`/api/posts/comment/${post._id}`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ text: comment }),
-        });
+        const res = await fetch(
+          `${import.meta.env.VITE_API_BASE_URL}/posts/comment/${post._id}`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ text: comment }),
+          }
+        );
         const data = await res.json();
         if (!res.ok) {
           throw new Error(data.error || "Something went wrong");

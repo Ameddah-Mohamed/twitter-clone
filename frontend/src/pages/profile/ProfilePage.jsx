@@ -42,7 +42,9 @@ const ProfilePage = () => {
     queryKey: ["userProfile"],
     queryFn: async () => {
       try {
-        const res = await fetch(`/api/users/profile/${username}`);
+        const res = await fetch(
+          `${import.meta.env.VITE_API_BASE_URL}/users/profile/${username}`
+        );
         const data = await res.json();
         if (!res.ok) {
           throw new Error(data.error || "Something went wrong");
@@ -81,7 +83,9 @@ const ProfilePage = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const response = await fetch(`/api/posts/user/${username}`);
+      const response = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/posts/user/${username}`
+      );
       setUserPosts(await response.json());
     };
 
