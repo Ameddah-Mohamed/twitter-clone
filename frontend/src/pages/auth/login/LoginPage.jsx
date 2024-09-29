@@ -1,13 +1,11 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 import XSvg from "../../../components/svgs/X";
 
-import { MdOutlineMail } from "react-icons/md";
 import { FaUser } from "react-icons/fa";
 import { MdPassword } from "react-icons/md";
-import { MdDriveFileRenameOutline } from "react-icons/md";
+
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
@@ -86,7 +84,7 @@ const LoginPage = () => {
                 className="grow"
                 placeholder="Username"
                 name="username"
-                value={FormData.username}
+                value={formData.username}
                 onChange={handleInputChange}
                 autoComplete="username"
               />
@@ -100,7 +98,7 @@ const LoginPage = () => {
                 className="grow"
                 name="password"
                 placeholder="password"
-                value={FormData.password}
+                value={formData.password}
                 onChange={handleInputChange}
                 autoComplete="new-password"
               />
@@ -109,7 +107,6 @@ const LoginPage = () => {
             <button
               type="submit"
               className="bg-custom-blue hover:bg-hoverBlue active:bg-activeBlue text-white font-bold py-2 px-4 rounded-full transition duration-300 ease"
-              onSubmit={handleInputChange}
             >
               {isPending ? "Loading.." : "Login"}
             </button>
